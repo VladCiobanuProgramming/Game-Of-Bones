@@ -1,4 +1,4 @@
-Fight Monsters , Upgrade Attacks , Purchase Items and use them in Battle.
+Fight Monsters, upgrade Attacks, purchase Items and use them in battle!
 
 > Project has multiple classes , compille-able in a normal online Compiller with decent handling.
 
