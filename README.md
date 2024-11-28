@@ -1,7 +1,7 @@
 Fight Monsters, upgrade Attacks, purchase Items and use them in battle!
 
-> Project has multiple classes , compille-able in a normal online Compiller with decent handling.
+> Project has multiple classes, compileable in a normal online compiler with decent handling.
 
-> Work in Progress Project AKA Multiple Bugs.
+> Work in Progress Project AKA multiple bugs.
 
-> Have fun !
+> Have fun!
