@@ -6,6 +6,4 @@ public class Stats {
     int level;
     int HP;
     int hpCap;
-
-
 }
