@@ -73,7 +73,7 @@ public class Main {
         System.out.println("* 1% Chance Drop : Rune Of Demons; ");
         System.out.println("* 25% Chance Drop : Scrap Metal; ");
         System.out.println("-Monster Difficulty should rise with every Level, good luck out there. \n");
-        TimeUnit.MILLISECONDS.sleep(2000);
+        //TimeUnit.MILLISECONDS.sleep(2000);
 
         while (player.HP > 0) {
             System.out.println("Choose where you want to go / what you want to do. (Input Number)");
