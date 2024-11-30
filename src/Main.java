@@ -42,7 +42,7 @@ public class Main {
         p1.HP = 20;
         p1.hpCap = 20;
         Stats mon = new Stats();
-        mon.HP = 15;
+        mon.hpCap = 15;
         int slashAttackBound = 5;
         int boopAttackBound = 3;
         int attackDamage;
@@ -83,6 +83,7 @@ public class Main {
             // TODO : modern switch cases
             switch (takeInput()) {
                 case 1:
+                    mon.HP=mon.hpCap;
                     // case 1 = enemy encounter
                     int randomEnemy = rand.nextInt(4);
                     // Enemy Type chosen at random
@@ -140,6 +141,8 @@ public class Main {
                         switch (takeInput()) {
                             // slash case
                             case 1:
+                                int monsterRNG = rand.nextInt(7) + 1;
+                                int monsRandAttack = rand.nextInt(2);
                                 attackDamage = rand.nextInt(slashAttackBound) + 1;
                                 System.out.println(p1.name + " used 'Slash'!");
                                 TimeUnit.MILLISECONDS.sleep(1700);
@@ -151,24 +154,23 @@ public class Main {
                                 System.out.println(p1.name + " hit " + mon.name + " for " + attackDamage + " damage!");
                                 TimeUnit.MILLISECONDS.sleep(1700);
                                 mon.HP -= attackDamage;
-                                // TODO : Conditions to make monster NOT fight back if it's dead
-                                System.out.println(mon.name + " is preparing an attack...\n");
-                                TimeUnit.MILLISECONDS.sleep(1700);
-                                int monsterRNG = rand.nextInt(7) + 1;
-                                int monsRandAttack = rand.nextInt(2);
-                                switch (monsRandAttack) {
-                                    case 0:
-                                        System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
-                                        break;
-                                    case 1:
-                                        System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
-                                        break;
-                                    default:
+                                if (mon.HP > 0) {
+                                    System.out.println(mon.name + " is preparing an attack...\n");
+                                    TimeUnit.MILLISECONDS.sleep(1700);
+                                    switch (monsRandAttack) {
+                                        case 0:
+                                            System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
+                                            break;
+                                        case 1:
+                                            System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
+                                            break;
+                                        default:
+                                    }
+                                    p1.HP -= monsterRNG;
+                                    System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
+                                    System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
+                                    TimeUnit.MILLISECONDS.sleep(1700);
                                 }
-                                p1.HP -= monsterRNG;
-                                System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
-                                System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
-                                TimeUnit.MILLISECONDS.sleep(1700);
                                 break;
                             // boop case
                             case 2:
@@ -177,23 +179,25 @@ public class Main {
                                 System.out.println(p1.name + " hit " + mon.name + " for 3 damage!");
                                 TimeUnit.MILLISECONDS.sleep(1700);
                                 mon.HP -= boopAttackBound;
-                                System.out.println(mon.name + " is preparing an attack...\n");
-                                TimeUnit.MILLISECONDS.sleep(1700);
-                                monsterRNG = rand.nextInt(7) + 1;
-                                monsRandAttack = rand.nextInt(2);
-                                switch (monsRandAttack) {
-                                    case 0:
-                                        System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
-                                        break;
-                                    case 1:
-                                        System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
-                                        break;
-                                    default:
+                                if (mon.HP > 0) {
+                                    System.out.println(mon.name + " is preparing an attack...\n");
+                                    TimeUnit.MILLISECONDS.sleep(1700);
+                                    monsterRNG = rand.nextInt(7) + 1;
+                                    monsRandAttack = rand.nextInt(2);
+                                    switch (monsRandAttack) {
+                                        case 0:
+                                            System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
+                                            break;
+                                        case 1:
+                                            System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
+                                            break;
+                                        default:
+                                    }
+                                    p1.HP -= monsterRNG;
+                                    System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
+                                    System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
+                                    TimeUnit.MILLISECONDS.sleep(1700);
                                 }
-                                p1.HP -= monsterRNG;
-                                System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
-                                System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
-                                TimeUnit.MILLISECONDS.sleep(1700);
                                 break;
                             case 3:
                                 // inventory case
@@ -216,24 +220,27 @@ public class Main {
                                             }
                                             System.out.println("You are now at " + p1.HP + " HP. (-1 MedKit)\n");
                                             medKitAmount--;
-                                            TimeUnit.MILLISECONDS.sleep(1400);
-                                            System.out.println(mon.name + " is preparing an attack...\n");
-                                            TimeUnit.MILLISECONDS.sleep(1700);
-                                            monsterRNG = rand.nextInt(7) + 1;
-                                            monsRandAttack = rand.nextInt(2);
-                                            switch (monsRandAttack) {
-                                                case 0:
-                                                    System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
-                                                    break;
-                                                case 1:
-                                                    System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
-                                                    break;
-                                                default:
+                                            if (mon.HP > 0) {
+                                                TimeUnit.MILLISECONDS.sleep(1400);
+                                                System.out.println(mon.name + " is preparing an attack...\n");
+                                                TimeUnit.MILLISECONDS.sleep(1700);
+                                                monsterRNG = rand.nextInt(7) + 1;
+                                                monsRandAttack = rand.nextInt(2);
+                                                switch (monsRandAttack) {
+                                                    case 0:
+                                                        System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage!\n");
+                                                        break;
+                                                    case 1:
+                                                        System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage!\n");
+                                                        break;
+
+                                                    default:
+                                                }
+                                                p1.HP -= monsterRNG;
+                                                System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
+                                                System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
+                                                TimeUnit.MILLISECONDS.sleep(1700);
                                             }
-                                            p1.HP -= monsterRNG;
-                                            System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
-                                            System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
-                                            TimeUnit.MILLISECONDS.sleep(1700);
                                             break;
                                         } else if (medKitAmount <= 0) {
                                             System.out.println("\nNot enough MedKits to heal.");
@@ -252,28 +259,32 @@ public class Main {
                                             System.out.println("You are preparing a debuffed attack yourself...");
                                             TimeUnit.MILLISECONDS.sleep(1600);
                                             int debuffedOreoAttack = rand.nextInt(3) + 1;
-                                            System.out.println("You hit " + mon.name + " for " + debuffedOreoAttack + "HP !");
-                                            System.out.println(mon.name + " is preparing an attack...\n");
-                                            TimeUnit.MILLISECONDS.sleep(1700);
-                                            monsterRNG = rand.nextInt(7) + 1;
-                                            monsterRNG -= 4;
-                                            if (monsterRNG <= 0) {
-                                                monsterRNG = 0;
+                                            mon.HP -= debuffedOreoAttack;
+                                            System.out.println("You hit " + mon.name + " for " + debuffedOreoAttack + "HP !\n");
+                                            TimeUnit.MILLISECONDS.sleep(1600);
+                                            if (mon.HP > 0) {
+                                                System.out.println(mon.name + " is preparing an attack...\n");
+                                                TimeUnit.MILLISECONDS.sleep(1700);
+                                                monsterRNG = rand.nextInt(7) + 1;
+                                                monsterRNG -= 4;
+                                                if (monsterRNG <= 0) {
+                                                    monsterRNG = 0;
+                                                }
+                                                monsRandAttack = rand.nextInt(2);
+                                                switch (monsRandAttack) {
+                                                    case 0:
+                                                        System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
+                                                        break;
+                                                    case 1:
+                                                        System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
+                                                        break;
+                                                    default:
+                                                }
+                                                p1.HP -= monsterRNG;
+                                                System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
+                                                System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
+                                                TimeUnit.MILLISECONDS.sleep(1700);
                                             }
-                                            monsRandAttack = rand.nextInt(2);
-                                            switch (monsRandAttack) {
-                                                case 0:
-                                                    System.out.println(mon.name + " used " + mon.attackOne + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
-                                                    break;
-                                                case 1:
-                                                    System.out.println(mon.name + " used " + mon.attackTwo + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
-                                                    break;
-                                                default:
-                                            }
-                                            p1.HP -= monsterRNG;
-                                            System.out.println(p1.name + " is now at " + p1.HP + " HP remaining.");
-                                            System.out.println(mon.name + " is now at " + mon.HP + " HP remaining.\n");
-                                            TimeUnit.MILLISECONDS.sleep(1700);
                                         } else if (oreoCookieAmount <= 0) {
                                             System.out.println("\nNo Oreo Cookies in Inventory.");
                                             TimeUnit.MILLISECONDS.sleep(1000);
@@ -304,6 +315,23 @@ public class Main {
                             }
                             TimeUnit.MILLISECONDS.sleep(1000);
                             System.out.println("---------------------");
+                            break;
+                        }
+                        // end menu if player HP <0
+                        if (p1.HP <= 0) {
+                            System.out.println("--------------------------------------");
+                            System.out.println("It all goes pitch black all of a sudden.");
+                            TimeUnit.MILLISECONDS.sleep(2000);
+                            System.out.println("A scary and tall figure introduces himself as Bench The Reality Bender.");
+                            TimeUnit.MILLISECONDS.sleep(2000);
+                            System.out.println("Bench : You died. You shall now face eternal suffering , not just in Hell but also within this realm of Darkness.");
+                            TimeUnit.MILLISECONDS.sleep(2000);
+                            System.out.println("-STATS-");
+                            TimeUnit.MILLISECONDS.sleep(1500);
+                            System.out.println("* name : " + p1.name);
+                            System.out.println("* Level: " + p1.level);
+                            System.out.println("* Max HP: " + p1.hpCap);
+                            break;
                         }
                     }
                     break;
@@ -434,25 +462,9 @@ public class Main {
                     System.out.printf("* %d Oreo Cookies\n%n", oreoCookieAmount);
                     TimeUnit.MILLISECONDS.sleep(2000);
                     break;
-
                 default:
                     System.out.print("Please input valid number: ");
                     break;
-            }
-            // end menu if player HP <0
-            if (p1.HP <= 0) {
-                System.out.println("--------------------------------------");
-                System.out.println("It all goes pitch black all of a sudden.");
-                TimeUnit.MILLISECONDS.sleep(2000);
-                System.out.println("A scary and tall figure introduces himself as Bench The Reality Bender.");
-                TimeUnit.MILLISECONDS.sleep(2000);
-                System.out.println("Bench : You died. You shall now face eternal suffering , not just in Hell but also within this realm of Darkness.");
-                TimeUnit.MILLISECONDS.sleep(2000);
-                System.out.println("-STATS-");
-                TimeUnit.MILLISECONDS.sleep(1500);
-                System.out.println("* name : " + p1.name);
-                System.out.println("* Level: " + p1.level);
-                System.out.println("* Max HP: " + p1.hpCap);
             }
         }
     }
