@@ -4,4 +4,6 @@ Fight Monsters, upgrade Attacks, purchase Items and use them in battle!
 
 > Work in Progress Project AKA multiple bugs.
 
+> Uncommenting TIME.UNIT timers is recommended for better experience.
+
 > Have fun!
