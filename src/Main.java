@@ -426,7 +426,7 @@ public class Main {
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                         // if player does not have enough materials/coins
                                     } else if (runeOfDemonsAmount <= 0 || coinsAmount <= 100) {
-                                        System.out.println("Whoami : Not enough Coins/Materials;");
+                                        System.out.println("Whoami : Not enough Coins/Materials buddy.");
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                     }
                                     break;
@@ -441,22 +441,44 @@ public class Main {
                             }
                             break;
 
-                        // TODO : reinforced middle finger
+                        // TODO : reinforced middle finger + comment out middle finger code
                         case 2:
                             // case 2 : reinforced middle finger upgrade
                             System.out.println("\n-Reinforced Middle Finger-");
                             System.out.println("---------------------------");
                             System.out.println("<Boop your enemies harder than ever before.>");
-                            System.out.println("<+10 Damage on 'Boop' Attack>");
+                            System.out.println("<+5 Damage on 'Boop' Attack>");
                             System.out.println("---------------------------");
-                            System.out.println("* (x3) Metal Scrap Pieces;");
+                            System.out.println("* (x5) Metal Scrap Pieces;");
                             System.out.println("* 35 Coins;\n");
                             TimeUnit.MILLISECONDS.sleep(1500);
                             System.out.println("Whoami : Ready for an Upgrade?");
                             System.out.println("[1].Yes;");
                             System.out.println("[2].No;");
                             System.out.println("[Invalid Input]. Leave Blacksmith;");
-                            // reinforced middle finger currently WIP
+                            switch(takeInput()){
+                                case 1 :
+                                    if(scrapMetalAmount >= 5 && coinsAmount >= 35) {
+                                        reinforcedMiddleFinger = true;
+                                        System.out.println("Crafted Reinforced Middle Finger. (+5 Damage on 'Boop' Attack)");
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    } else if(scrapMetalAmount < 5 || coinsAmount < 35){
+                                        System.out.println("Whoami : Not enough Coins/Materials buddy.");
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    }
+                                    break;
+
+                                case 2:
+                                    // case 2 : no case
+                                    System.out.println("You chose not to reinforce your middle finger.");
+                                    TimeUnit.MILLISECONDS.sleep(1000);
+                                    break;
+
+                                default:
+                            }
+                            break;
+
+                        default:
                     }
                     break;
 
