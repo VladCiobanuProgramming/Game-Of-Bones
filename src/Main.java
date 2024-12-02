@@ -45,12 +45,12 @@ public class Main {
         int slashAttackBound = 5;
         int boopAttackBound = 3;
         int attackDamage;
-        int coinsAmount = 11110;
+        int coinsAmount = 0;
         int medKitAmount = 0;
         int oreoCookieAmount = 0;
-        int runeOfDemonsAmount = 100;
+        int runeOfDemonsAmount = 0;
         int scrapMetalAmount = 0;
-        Boolean swordOfFieryPits = true;
+        Boolean swordOfFieryPits = false;
         Boolean reinforcedMiddleFinger = false;
         boolean manual = false;
         int playerEXP = 0;
