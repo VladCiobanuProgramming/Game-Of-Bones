@@ -45,12 +45,12 @@ public class Main {
         int slashAttackBound = 5;
         int boopAttackBound = 3;
         int attackDamage;
-        int coinsAmount = 0;
+        int coinsAmount = 11110;
         int medKitAmount = 0;
         int oreoCookieAmount = 0;
-        int runeOfDemonsAmount = 0;
+        int runeOfDemonsAmount = 100;
         int scrapMetalAmount = 0;
-        Boolean swordOfFieryPits = false;
+        Boolean swordOfFieryPits = true;
         Boolean reinforcedMiddleFinger = false;
         boolean manual = false;
         int playerEXP = 0;
@@ -161,6 +161,10 @@ public class Main {
                                    slashAttackBound starts from 5 => Player attack damage can do up to 5 damage
                                  */
                                 attackDamage = rand.nextInt(slashAttackBound) + 1;
+                                // condition if sword of fiery pits is crated
+                                if (swordOfFieryPits) {
+                                    attackDamage += 5000;
+                                }
                                 System.out.println(player.name + " used 'Slash'!");
                                 TimeUnit.MILLISECONDS.sleep(1700);
                                 // crit chance
@@ -200,6 +204,10 @@ public class Main {
                             // case 2 : boop attack case
                             case 2:
                                 System.out.println(player.name + " used 'Boop'!");
+                                // condition if reinforced middle finger is crafted
+                                if (reinforcedMiddleFinger) {
+                                    boopAttackBound += 5;
+                                }
                                 TimeUnit.MILLISECONDS.sleep(1700);
                                 System.out.println(player.name + " hit " + monster.name + " for " + boopAttackBound + " damage!");
                                 TimeUnit.MILLISECONDS.sleep(1700);
@@ -419,14 +427,21 @@ public class Main {
                                 case 1:
                                     // case 1 : yes case
                                     // if player has enough materials/coins
-                                    if (runeOfDemonsAmount > 0 && coinsAmount >= 100) {
+                                    if (runeOfDemonsAmount > 0 && coinsAmount >= 100 && !swordOfFieryPits) {
                                         // player crafts sword and condition becomes true <=> player obtained upgrade
                                         swordOfFieryPits = true;
                                         System.out.println("Crafted SWORD OF FIERY PITS. (+5000 Damage on 'Slash' Attack)");
+                                        runeOfDemonsAmount--;
+                                        coinsAmount -= 100;
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                         // if player does not have enough materials/coins
                                     } else if (runeOfDemonsAmount <= 0 || coinsAmount <= 100) {
                                         System.out.println("Whoami : Not enough Coins/Materials buddy.");
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    }
+                                    // condition to negate player from crafting items again and possibly wasting materials
+                                    if (swordOfFieryPits) {
+                                        System.out.println("Sword Of Fiery Pits already crafted.");
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                     }
                                     break;
@@ -458,12 +473,19 @@ public class Main {
                             System.out.println("[Invalid Input]. Leave Blacksmith;");
                             switch(takeInput()){
                                 case 1 :
-                                    if(scrapMetalAmount >= 5 && coinsAmount >= 35) {
+                                    if(scrapMetalAmount >= 5 && coinsAmount >= 35 && !reinforcedMiddleFinger) {
                                         reinforcedMiddleFinger = true;
                                         System.out.println("Crafted Reinforced Middle Finger. (+5 Damage on 'Boop' Attack)");
+                                        scrapMetalAmount -= 5;
+                                        coinsAmount -= 35;
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                     } else if(scrapMetalAmount < 5 || coinsAmount < 35){
                                         System.out.println("Whoami : Not enough Coins/Materials buddy.");
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    }
+                                    // condition to negate player from crafting items again and possibly wasting materials
+                                    if (reinforcedMiddleFinger){
+                                        System.out.println("Finger already reinforced.");
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                     }
                                     break;
