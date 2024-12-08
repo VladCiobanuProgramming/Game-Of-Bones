@@ -50,11 +50,11 @@ public class Main {
         int oreoCookieAmount = 0;
         int runeOfDemonsAmount = 0;
         int scrapMetalAmount = 0;
-        Boolean swordOfFieryPits = false;
-        Boolean reinforcedMiddleFinger = false;
-        boolean manual = false;
         int playerEXP = 0;
         int levelEXP = 10;
+        boolean manual = false;
+        Boolean swordOfFieryPits = false;
+        Boolean reinforcedMiddleFinger = false;
 
         Prologue();
         System.out.print("Enter Username: ");
@@ -88,8 +88,7 @@ public class Main {
                     monster.HP=monster.hpCap;
                     // enemy type chosen at random
                     Monsters currentMonster = null;
-                    final Random random = new Random();
-                    switch (random.nextInt(4)) {
+                    switch (rand.nextInt(4)) {
                         case 0 -> currentMonster = Monsters.OPAL;
 
                         case 1 -> currentMonster = Monsters.EMICA;
@@ -105,27 +104,15 @@ public class Main {
                         int randomBattleQuote = rand.nextInt(5);
                         // random quote displayed after turns
                         switch (randomBattleQuote) {
-                            case 0:
-                                System.out.println("You feel a shiver down your spine.\n");
-                                break;
+                            case 0 -> System.out.println("You feel a shiver down your spine.\n");
 
-                            case 1:
-                                System.out.println("While scared, you manage to gather some courage for your next action.\n");
-                                break;
+                            case 1 -> System.out.println("While scared, you manage to gather some courage for your next action.\n");
 
-                            case 2:
-                                System.out.println("Determination is all you need, no ?\n");
-                                break;
+                            case 2 -> System.out.println("Determination is all you need, no ?\n");
 
-                            case 3:
-                                System.out.println("TIP: 'Slash' has a chance at a critical hit for double damage!\n");
-                                break;
+                            case 3 -> System.out.println("TIP: 'Slash' has a chance at a critical hit for double damage!\n");
 
-                            case 4:
-                                System.out.println("TIP: 'Boop' has will always do " + boopAttackBound + " damage.");
-                                break;
-
-                            default:
+                            case 4 -> System.out.println("TIP: 'Boop' has will always do " + boopAttackBound + " damage.");
                         }
                         // Player turn choices
                         System.out.println("[1].Slash;");
@@ -140,7 +127,7 @@ public class Main {
                                 int monsterRNG = rand.nextInt(7) + 1;
                                 // Variable value 0 or 1 to help pick the monster used attack at random
                                 int monsRandAttack = rand.nextInt(2);
-                                /* Player attack damage will range from 1 to slashAttackBound (which can incerase if player obtains upgrades)
+                                /* Player attack damage will range from 1 to slashAttackBound (which can increase if player obtains upgrades)
                                    slashAttackBound starts from 5 => Player attack damage can do up to 5 damage
                                  */
                                 attackDamage = rand.nextInt(slashAttackBound) + 1;
@@ -166,15 +153,9 @@ public class Main {
                                     System.out.println(currentMonster.name + " is preparing an attack...\n");
                                     TimeUnit.MILLISECONDS.sleep(1700);
                                     switch (monsRandAttack) {
-                                        case 0:
-                                            System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
-                                            break;
+                                        case 0 -> System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
 
-                                        case 1:
-                                            System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
-                                            break;
-
-                                        default:
+                                        case 1 -> System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
                                     }
                                     player.HP -= monsterRNG;
                                     // aftermath of turns
@@ -203,15 +184,10 @@ public class Main {
                                     monsterRNG = rand.nextInt(7) + 1;
                                     monsRandAttack = rand.nextInt(2);
                                     switch (monsRandAttack) {
-                                        case 0:
-                                            System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
-                                            break;
+                                        case 0 -> System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
 
-                                        case 1:
-                                            System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
-                                            break;
+                                        case 1 -> System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
 
-                                        default:
                                     }
                                     // aftermath of turns
                                     player.HP -= monsterRNG;
@@ -252,16 +228,9 @@ public class Main {
                                                 monsterRNG = rand.nextInt(7) + 1;
                                                 monsRandAttack = rand.nextInt(2);
                                                 switch (monsRandAttack) {
-                                                    case 0:
-                                                        System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
-                                                        break;
+                                                    case 0 -> System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage!\n");
 
-                                                    case 1:
-                                                        System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
-                                                        break;
-
-
-                                                    default:
+                                                    case 1 -> System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage!\n");
                                                 }
                                                 player.HP -= monsterRNG;
                                                 System.out.println(player.name + " is now at " + player.HP + " HP remaining.");
@@ -284,7 +253,7 @@ public class Main {
                                         if (oreoCookieAmount > 0) {
                                             oreoCookieAmount--;
                                             /*
-                                            Oreo Cookie makes the next monster attack be weakend by -4 Damage
+                                            Oreo Cookie makes the next monster attack be weakened by -4 Damage
                                             The only downside is that you yourself can only do up to 3 damage (debuffedOreoAttack = rand.nextInt(3)+1;
                                              */
                                             System.out.println("Used Oreo Cookie for -4 damage on next Monster Attack.");
@@ -305,15 +274,9 @@ public class Main {
                                                 }
                                                 monsRandAttack = rand.nextInt(2);
                                                 switch (monsRandAttack) {
-                                                    case 0:
-                                                        System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
-                                                        break;
+                                                    case 0 -> System.out.println(currentMonster.name + " used " + currentMonster.attack1 + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
 
-                                                    case 1:
-                                                        System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
-                                                        break;
-
-                                                    default:
+                                                    case 1 -> System.out.println(currentMonster.name + " used " + currentMonster.attack2 + " to deal " + monsterRNG + " damage! (Oreo Cookie Debuff Active)\n");
                                                 }
                                                 // aftermath of turns
                                                 player.HP -= monsterRNG;
@@ -574,7 +537,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.print("Please input valid number: ");
+                    System.out.print("Please input valid number, ");
                     break;
             }
         }
