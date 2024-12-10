@@ -31,7 +31,7 @@ public class Main {
         //TimeUnit.MILLISECONDS.sleep(1700);
         System.out.println("You encounter a strange face. He introduces himself as Ajax.");
         //TimeUnit.MILLISECONDS.sleep(1700);
-        System.out.println("Ajax : What's your name ? Let's get this adventure started already this prologue was hellishly long.\n");
+        System.out.println("Ajax : What's your name ? Let's get this adventure started already, this prologue was hellishly long.\n");
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -42,6 +42,7 @@ public class Main {
         player.hpCap = 20;
         Stats monster = new Stats();
         monster.hpCap = 15;
+        int monsterRNGBound = 7;
         int slashAttackBound = 5;
         int boopAttackBound = 3;
         int attackDamage;
@@ -52,9 +53,8 @@ public class Main {
         int scrapMetalAmount = 0;
         int playerEXP = 0;
         int levelEXP = 10;
-        boolean manual = false;
-        Boolean swordOfFieryPits = false;
-        Boolean reinforcedMiddleFinger = false;
+        boolean swordOfFieryPits = false;
+        boolean reinforcedMiddleFinger = false;
 
         Prologue();
         System.out.print("Enter Username: ");
@@ -124,7 +124,7 @@ public class Main {
                             //  case 1 : slash attack case
                             case 1:
                                 // Damage monster will do in its turn
-                                int monsterRNG = rand.nextInt(7) + 1;
+                                int monsterRNG = rand.nextInt(monsterRNGBound) + 1;
                                 // Variable value 0 or 1 to help pick the monster used attack at random
                                 int monsRandAttack = rand.nextInt(2);
                                 /* Player attack damage will range from 1 to slashAttackBound (which can increase if player obtains upgrades)
@@ -299,24 +299,61 @@ public class Main {
                         if (monster.HP <= 0) {
                             System.out.println(currentMonster.name + " defeated!");
                             TimeUnit.MILLISECONDS.sleep(1000);
-                            int randCoins = rand.nextInt(15) + 1;
-                            System.out.println("Obtained " + randCoins + " Coins!");
-                            coinsAmount += randCoins;
-                            TimeUnit.MILLISECONDS.sleep(1000);
                             // random chance material dropping for crafting
-                            int randRune = rand.nextInt(100);
-                            if (randRune == 99) {
-                                System.out.println("RUNE OF DEMONS OBTAINED.");
+                            if (rand.nextInt(100) == 99) {
+                                System.out.println("RUNE OF DEMONS OBTAINED. (+1 Rune Of Demons)");
                                 TimeUnit.MILLISECONDS.sleep(1000);
                                 runeOfDemonsAmount++;
                             }
-                            int randScrap = rand.nextInt(4);
-                            if (randScrap == 3) {
+                            if (rand.nextInt(4) == 3) {
                                 System.out.println("+1 Scrap Metal!");
                                 TimeUnit.MILLISECONDS.sleep(1000);
                                 scrapMetalAmount++;
                             }
                             TimeUnit.MILLISECONDS.sleep(1000);
+                            int randCoins = rand.nextInt(15) + 1;
+                            System.out.println("Obtained " + randCoins + " Coins!");
+                            coinsAmount += randCoins;
+                            TimeUnit.MILLISECONDS.sleep(1000);
+                            int randExp = rand.nextInt(10) + 1;
+                            playerEXP += randExp;
+                            System.out.println("+" + randExp + " EXP.");
+                            TimeUnit.MILLISECONDS.sleep(1000);
+                            // TODO : WIP Levelling Up + Increase Monster/Player HP's and raise difficulty
+                            // TODO : Figure out how to manage invalid inputs
+                            // TODO : comment uncommented code
+                            if (playerEXP >= levelEXP) {
+                                System.out.println("Leveled up! (+3 MaxHP !!)");
+                                TimeUnit.MILLISECONDS.sleep(1000);
+                                System.out.println("Pick and Attack to Upgrade :");
+                                TimeUnit.MILLISECONDS.sleep(1000);
+                                System.out.println("[1].Refine Sword (+3 Attack Bound on 'Slash' Attack);");
+                                System.out.println("[2].Train Middle Finger (+4 Attack Bound on 'Boop' Attack);");
+                                System.out.print("Input: ");
+                                switch (takeInput()) {
+                                    case 1 -> {
+                                        System.out.println("Sword Upgraded.");
+                                        slashAttackBound += 3;
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    }
+                                    case 2 -> {
+                                        System.out.println("Finger trained and stronger.");
+                                        boopAttackBound += 4;
+                                        TimeUnit.MILLISECONDS.sleep(1000);
+                                    }
+                                }
+                                System.out.println("Note : Monsters got stronger. Be aware. (+5HP Capacity on Monsters, +2 Attack Bound Range.)\n");
+                                TimeUnit.MILLISECONDS.sleep(1500);
+                                player.hpCap += 3;
+                                monster.hpCap +=5;
+                                monsterRNGBound += 2;
+                                playerEXP = 0;
+                                levelEXP += 5;
+                                monsterRNGBound += 2;
+                                player.level++;
+                                monster.HP = monster.hpCap;
+                                player.HP = player.hpCap;
+                            }
                             System.out.println("---------------------");
                             break;
                         }
@@ -351,7 +388,6 @@ public class Main {
                     System.out.println("[2]. Normal Middle Finger -> Reinforced Middle Finger;");
                     System.out.println("[Invalid Input]. Leave Blacksmith;");
                     switch (takeInput()) {
-                        // TODO : change 'slash' attack damage if sword of fiery pits is crafted
                         // case 1 : sword of fiery pits upgrade
                         case 1:
                             System.out.println("\n-Sword Of Fiery Pits-");
@@ -531,6 +567,7 @@ public class Main {
                     System.out.printf("* Max HP : %d%n", player.hpCap);
                     System.out.printf("* Current HP : %d%n", player.HP);
                     System.out.println("-INVENTORY-");
+                    System.out.printf("* %d Coins%n", coinsAmount);
                     System.out.printf("* %d MedKits%n", medKitAmount);
                     System.out.printf("* %d Oreo Cookies\n%n", oreoCookieAmount);
                     TimeUnit.MILLISECONDS.sleep(2000);
