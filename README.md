@@ -50,16 +50,6 @@ The game is a text-based experience that takes place in a world where the player
 2. **Making Decisions**: At each decision point, you can choose from multiple options that influence the next set of events.
 3. **End of Game**: The game either reaches a conclusion or loops back depending on the story arc or conditions met by the player.
 
-## Future Improvements
-
-This game can be expanded in a variety of ways to improve the overall experience:
-
-- **Multiple Levels/Worlds**: Add new locations or stages for the player to explore.
-- **Character Development**: Implement RPG-style elements like leveling up or skill progression.
-- **Multiple Endings**: Introduce more complex branching paths and multiple possible endings based on choices.
-- **Graphical User Interface (GUI)**: Instead of a text-based interface, the game could be upgraded to use JavaFX or another GUI framework for a more visually appealing experience.
-- **Sound Effects/Music**: Add background music and sound effects for a richer experience.
-
 ## License
 
 This project is open-source and available under the [MIT License](https://opensource.org/licenses/MIT).
