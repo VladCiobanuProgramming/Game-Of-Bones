@@ -31,7 +31,7 @@ public class Main {
         //TimeUnit.MILLISECONDS.sleep(1700);
         System.out.println("You encounter a strange face. He introduces himself as Ajax.");
         //TimeUnit.MILLISECONDS.sleep(1700);
-        System.out.println("Ajax : What's your name ? Let's get this adventure started already, this prologue was hellishly long.\n");
+        System.out.println("Ajax : Have this Medkit to help you in your adventure. What's your name tho ? (+1 MedKit from Ajax)\n");
     }
 
     public static void main(String[] args) throws InterruptedException {
@@ -47,7 +47,7 @@ public class Main {
         int boopAttackBound = 3;
         int attackDamage;
         int coinsAmount = 0;
-        int medKitAmount = 0;
+        int medKitAmount = 1;
         int oreoCookieAmount = 0;
         int runeOfDemonsAmount = 0;
         int scrapMetalAmount = 0;
