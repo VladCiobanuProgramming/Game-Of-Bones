@@ -31,7 +31,7 @@ public class Main {
         //TimeUnit.MILLISECONDS.sleep(1700);
         System.out.println("You encounter a strange face. He introduces himself as Ajax.");
         //TimeUnit.MILLISECONDS.sleep(1700);
-        System.out.println("Ajax : Have this Medkit to help you in your adventure. What's your name tho ? (+1 MedKit from Ajax)\n");
+        System.out.println("Ajax : Have this Medkit to help you in your adventure. What's your name though ? (+1 MedKit from Ajax)\n");
     }
 
     public static void main(String[] args) throws InterruptedException {
