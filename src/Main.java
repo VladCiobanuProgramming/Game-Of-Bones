@@ -1,13 +1,18 @@
+// If you're reading this as a player i suggest looking at the code and uncommenting the TimeUnits, then play for better experience
 import java.util.Random;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
+/*
+TODO list
+- figure out exceptions in inputs
+- rebuild code aka better structure
+ */
 public class Main {
-    public static Scanner scanner1 = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
     // Take Input Method (for integers)
     static int takeInput() {
-        return scanner1.nextInt();
+        return scanner.nextInt();
     }
     // Story Prologue as Method
     static void Prologue() throws InterruptedException {
@@ -58,7 +63,7 @@ public class Main {
 
         Prologue();
         System.out.print("Enter Username: ");
-        String pName = scanner1.nextLine();
+        String pName = scanner.nextLine();
         player.name = pName;
 
         System.out.println("Ajax : Alright " + player.name + ", let's go.");
@@ -81,7 +86,6 @@ public class Main {
             System.out.println("[2].To the Blacksmith's workplace;");
             System.out.println("[3].To the Vendor's Shop;");
             System.out.println("[4].Player Stats/Player Inventory;");
-            // TODO : modern switch cases
             switch (takeInput()) {
                 case 1:
                     // case 1 = enemy encounter
@@ -119,7 +123,6 @@ public class Main {
                         System.out.println("[2].Boop;");
                         System.out.println("[3].Inventory");
                         System.out.print("Select thy action (number input) :");
-                        // TODO : figure out exceptions in inputs
                         switch (takeInput()) {
                             //  case 1 : slash attack case
                             case 1:
@@ -200,7 +203,7 @@ public class Main {
                             case 3:
                                 // case 3 : inventory case
                                 System.out.println("\nYou took a peek in your inventory.");
-                                System.out.println("---------------------------------");
+                                System.out.println("-".repeat(45));
                                 System.out.println("[1].Medkit, Heal 10 HP (Note: Capped at MaxHP=" + player.hpCap + "). (you have " + medKitAmount + " MedKits)");
                                 System.out.println("[2].Oreo Cookie, weaken next Enemy Attack by -4 BUT your next attack can only do up to 3 Damage. (you have " + oreoCookieAmount + " Oreo Cookies)");
                                 System.out.println("[Invalid Input].Go back to Main Fighting Menu.");
@@ -319,23 +322,26 @@ public class Main {
                             playerEXP += randExp;
                             System.out.println("+" + randExp + " EXP.");
                             TimeUnit.MILLISECONDS.sleep(1000);
-                            // TODO : WIP Levelling Up + Increase Monster/Player HP's and raise difficulty
                             // TODO : Figure out how to manage invalid inputs
-                            // TODO : comment uncommented code
+
+                            // check for player exp higher or equal to the exp required to level up
                             if (playerEXP >= levelEXP) {
                                 System.out.println("Leveled up! (+3 MaxHP !!)");
                                 TimeUnit.MILLISECONDS.sleep(1000);
                                 System.out.println("Pick and Attack to Upgrade :");
                                 TimeUnit.MILLISECONDS.sleep(1000);
+                                // user attack upgrade pick
                                 System.out.println("[1].Refine Sword (+3 Attack Bound on 'Slash' Attack);");
                                 System.out.println("[2].Train Middle Finger (+4 Attack Bound on 'Boop' Attack);");
                                 System.out.print("Input: ");
                                 switch (takeInput()) {
+                                    // case 1 : sword upgrade
                                     case 1 -> {
                                         System.out.println("Sword Upgraded.");
                                         slashAttackBound += 3;
                                         TimeUnit.MILLISECONDS.sleep(1000);
                                     }
+                                    // case 2 : finger upgrade
                                     case 2 -> {
                                         System.out.println("Finger trained and stronger.");
                                         boopAttackBound += 4;
@@ -344,6 +350,7 @@ public class Main {
                                 }
                                 System.out.println("Note : Monsters got stronger. Be aware. (+5HP Capacity on Monsters, +2 Attack Bound Range.)\n");
                                 TimeUnit.MILLISECONDS.sleep(1500);
+                                // increase monster/player HP, possible attack damage, reset player EXP points and increase level required to level up again
                                 player.hpCap += 3;
                                 monster.hpCap +=5;
                                 monsterRNGBound += 2;
@@ -359,7 +366,7 @@ public class Main {
                         }
                         // player death aftermath
                         if (player.HP <= 0) {
-                            System.out.println("--------------------------------------");
+                            System.out.println("-".repeat(45));
                             System.out.println("It all goes pitch black all of a sudden.");
                             TimeUnit.MILLISECONDS.sleep(2000);
                             System.out.println("A scary and tall figure introduces himself as Bench The Reality Bender.");
@@ -391,10 +398,10 @@ public class Main {
                         // case 1 : sword of fiery pits upgrade
                         case 1:
                             System.out.println("\n-Sword Of Fiery Pits-");
-                            System.out.println("---------------------------");
+                            System.out.println("-".repeat(45));
                             System.out.println("<A Sword forged from Hell's most scorching fires and most Frightful Screams.>");
                             System.out.println("<'Slash' Attack Damage +5000,become Unkillable, The Reaper, The Ultimate Terror of HELL.>");
-                            System.out.println("---------------------------");
+                            System.out.println("-".repeat(45));
                             // upgrade recipe (materials obtainable from defeating monsters)
                             System.out.println("* (x1) Rune of Demons;");
                             System.out.println("* 100 Coins;\n");
@@ -437,15 +444,13 @@ public class Main {
                                 default:
                             }
                             break;
-
-                        // TODO : reinforced middle finger + comment out middle finger code
                         case 2:
                             // case 2 : reinforced middle finger upgrade
                             System.out.println("\n-Reinforced Middle Finger-");
-                            System.out.println("---------------------------");
+                            System.out.println("-".repeat(45));
                             System.out.println("<Boop your enemies harder than ever before.>");
                             System.out.println("<+5 Damage on 'Boop' Attack>");
-                            System.out.println("---------------------------");
+                            System.out.println("-".repeat(45));
                             System.out.println("* (x5) Metal Scrap Pieces;");
                             System.out.println("* 35 Coins;\n");
                             TimeUnit.MILLISECONDS.sleep(1500);
@@ -455,12 +460,15 @@ public class Main {
                             System.out.println("[Invalid Input]. Leave Blacksmith;");
                             switch(takeInput()){
                                 case 1 :
+                                    // case 1 : yes case
+                                    // check for player materials and already having reinforced middle finger crafted
                                     if(scrapMetalAmount >= 5 && coinsAmount >= 35 && !reinforcedMiddleFinger) {
                                         reinforcedMiddleFinger = true;
                                         System.out.println("Crafted Reinforced Middle Finger. (+5 Damage on 'Boop' Attack)");
                                         scrapMetalAmount -= 5;
                                         coinsAmount -= 35;
                                         TimeUnit.MILLISECONDS.sleep(1000);
+                                        // else if player doesn't have enough materials
                                     } else if(scrapMetalAmount < 5 || coinsAmount < 35){
                                         System.out.println("Whoami : Not enough Coins/Materials buddy.");
                                         TimeUnit.MILLISECONDS.sleep(1000);
@@ -491,9 +499,9 @@ public class Main {
                     System.out.println("You arrived at the Vendor. Encountered 'Sauce The Vendor'. ");
                     System.out.println("Sauce : Pick a item to buy or get out of my store already.");
                     TimeUnit.MILLISECONDS.sleep(1500);
-                    System.out.println("------------------------------------------");
+                    System.out.println("-".repeat(45));
                     System.out.println("Sauce's Shop || You have " + coinsAmount + " coins.");
-                    System.out.println("------------------------------------------");
+                    System.out.println("-".repeat(45));
                     System.out.println("[1].MedKit (Heals 10 HP); || 10 COINS");
                     System.out.println("[2].Oreo Cookie (Take 4 less Damage on next Monster Attack); || 15 COINS");
                     System.out.println("[3].Manual of Bodily Health (Increases Player Overall HP by +5) || 50 COINS");
@@ -578,6 +586,6 @@ public class Main {
                     break;
             }
         }
-        scanner1.close();
+        scanner.close();
     }
 }
