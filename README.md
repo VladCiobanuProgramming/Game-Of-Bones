@@ -22,15 +22,9 @@ You can clone the repository to your local machine using the following command:
 
 ### 2. Compile the Java Files
 
-Once you have the repository on your local machine, navigate to the `src` directory and compile the Java files:
+Once you have the repository on your local machine, navigate to the `src` directory and compile the Java files.
 
-
-### 3. Run the Game
-
-After compilation, you can run the game by using the following command:
-
-
-### 4. Start Playing
+### 3. Start Playing
 
 Once the game starts, you'll be presented with different choices that affect how the story progresses. Continue making decisions and see where your choices take you.
 
